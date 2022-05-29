@@ -97,9 +97,9 @@ int main(){
     return 1;
 }
 
-void initialize(graphType* g){
+void initialize(graphType* g){          // 그래프 초기화
     g->n = 0;
-    for(int i = 0; i < MAX_VERTEX; i++){
+    for(int i = 0; i < MAX_VERTEX; i++){    
         g->adj_list[i] = NULL;
     }
 }
@@ -139,8 +139,8 @@ void depthFirstSearch(graphType* g, int x){
 }
 
 void breathFirstSearch(graphType* g, int x){
-    graphNode* currentNode;
-    queueType q;
+    graphNode* currentNode;     // 현재 vertex 가리키는 노드 생성
+    queueType q;                // 큐 생성
     initqueue(&q);
 
 
@@ -176,20 +176,24 @@ void printGraph(graphType* g, int x){
 
 }
 
-void enqueue(queueType* q, int vertex){
+/* 큐 삽입 함수 */
+void enqueue(queueType* q, int vertex){    
     q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
     q->element[q->rear] = vertex;
 }
 
-int dequeue(queueType* q){
+/* 큐 삭제 함수 */
+int dequeue(queueType* q){         
     q->front = (q->front + 1) % MAX_QUEUE_SIZE;
     return q->element[q->front];
 }
 
+/* 큐 초기화 함수 */
 void initqueue(queueType* q){
     q->front = q->rear = 0;
 }
 
+/* 큐 공백 상태 검출 함수 */
 int is_empty(queueType* q){
     return (q->front == q->rear);
 }
